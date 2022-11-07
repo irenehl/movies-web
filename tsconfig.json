@@ -28,7 +28,8 @@
             "@hooks/*": ["hooks/*"],
             "@router/*": ["router/*"],
             "@form/*": ["form/*"],
-            "@assets/*": ["assets/*"]
+            "@assets/*": ["assets/*"],
+            "@ctx/*": ["ctx/*"]
         }
     },
     "include": [

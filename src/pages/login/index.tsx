@@ -9,6 +9,9 @@ import { useMutation } from '@tanstack/react-query';
 import animationData from '@assets/lottie/panda.json';
 import Lottie from 'react-lottie';
 import { toast } from 'react-hot-toast';
+import { login } from '@services/login.service';
+import { Navigate, useNavigate } from 'react-router-dom';
+import authStorage from '@services/storage/auth.storage';
 
 const defaultOptions = {
     loop: true,
@@ -20,7 +23,10 @@ const defaultOptions = {
 };
 
 const Login: FC = () => {
-    const { mutateAsync } = useMutation();
+    if (authStorage.getAuth() !== undefined) return <Navigate to="/home" replace />;
+
+    const navigate = useNavigate();
+    const { mutateAsync } = useMutation((info: LoginModel) => login(info));
 
     const { register, handleSubmit, formState } = useForm<LoginModel>({
         resolver: yupResolver(schema),
@@ -28,7 +34,12 @@ const Login: FC = () => {
     });
 
     const onSubmit = async (data: LoginModel) => {
+        const { data: res } = await mutateAsync(data);
 
+        if (res && res.token) {
+            authStorage.saveAuth(res.token);
+            navigate('/home');
+        }
     };
 
     useEffect(() => {
