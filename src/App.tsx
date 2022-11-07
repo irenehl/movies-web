@@ -1,9 +1,14 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import React, { FC } from 'react';
+import { RouterProvider } from 'react-router-dom';
+import history from '@router/index';
+
+const queryClient = new QueryClient();
 
 const App: FC = () => (
-    <div>
-        <h1>Hello world!</h1>
-    </div>
+    <QueryClientProvider client={queryClient}>
+        <RouterProvider router={history} />
+    </QueryClientProvider>
 );
 
 export default App;

@@ -1,3 +1,47 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.cont {
+    display: flex;
+    flex-direction: row;
+}
+
+.cont-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.center-row-xy {
+    @apply cont justify-center items-center;
+}
+
+.center-row-x {
+    @apply cont justify-center;
+}
+
+.center-row-y {
+    @apply cont items-center;
+}
+
+.center-col-xy {
+    @apply cont-col justify-center items-center;
+}
+
+.center-col-x {
+    @apply cont-col justify-center;
+}
+
+.center-col-y {
+    @apply cont-col items-center;
+}
+
+.with-trans {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+.quick {
+    transition-duration: 200ms;
+}

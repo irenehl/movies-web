@@ -13,6 +13,10 @@
         "react/function-component-definition": ["error", {
             "namedComponents": "arrow-function",
             "unnamedComponents": "arrow-function"
-        }]
+        }],
+        "import/prefer-default-export": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-indent-props": "off"
     }
 }
