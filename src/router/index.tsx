@@ -8,6 +8,14 @@ import Details from '@pages/details';
 
 const history = createBrowserRouter([
     {
+        path: '*',
+        element: (
+            <div>
+                noai ni vergas
+            </div>
+        ),
+    },
+    {
         path: '/login',
         element: <Login />,
     },

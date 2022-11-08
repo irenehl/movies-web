@@ -34,11 +34,14 @@ const Login: FC = () => {
     });
 
     const onSubmit = async (data: LoginModel) => {
-        const { data: res } = await mutateAsync(data);
-
-        if (res && res.token) {
-            authStorage.saveAuth(res.token);
-            navigate('/home');
+        try {
+            const { data: res } = await mutateAsync(data);
+            if (res && res.token) {
+                authStorage.saveAuth(res.token);
+                navigate('/');
+            }
+        } catch (err) {
+            toast.error('Something when wrong, please try again', { id: 'login-error' });
         }
     };
 
@@ -74,7 +77,7 @@ const Login: FC = () => {
                     />
                     <TextInput
                         label="Password"
-                        errors={formState.errors.email?.message}
+                        errors={formState.errors.password?.message}
                         placeholder="**************"
                         type="password"
                         inputProps={register('password')}

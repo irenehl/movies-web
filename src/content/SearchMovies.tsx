@@ -27,7 +27,9 @@ const SearchMovies: FC<SearchMoviesProps> = ({ query }) => {
 
     return (
         <section className="flex flex-row justify-between flex-wrap gap-10">
-            { movies.map((movie, idx) => <MovieCard key={`${id}-${idx}`} movie={movie} />) }
+            <div className="w-full gap-6 md:flex md:flex-wrap md:justify-around">
+                { movies.map((movie, idx) => <MovieCard key={`${id}-${idx}`} movie={movie} />) }
+            </div>
             <div className="w-full center-row-y mb-10 justify-between">
                 <button
                     onClick={() => handleNavigate(-1)}

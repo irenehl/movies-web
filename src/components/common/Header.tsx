@@ -21,11 +21,11 @@ const Header: FC<HeaderProps> = ({ title, subtitle }) => {
                 >
                     { mode === 'retro' ? <BsFillMoonFill /> : <BsFillSunFill />}
                 </button>
-                <a href="/" className={classNames('text-xl center-row-y gap-2', location.pathname === '/' && 'underline')}>
+                <a href="/" className={classNames('center-row-y gap-2 md:text-xl', location.pathname === '/' && 'underline')}>
                     Home
                     <AiFillHome />
                 </a>
-                <a href="/favs" className={classNames('text-xl center-row-y gap-2', location.pathname === '/favs' && 'underline')}>
+                <a href="/favs" className={classNames('center-row-y gap-2 md:text-xl', location.pathname === '/favs' && 'underline')}>
                     Favorites
                     <AiFillHeart />
                 </a>

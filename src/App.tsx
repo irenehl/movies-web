@@ -7,9 +7,7 @@ import { themeChange } from 'theme-change';
 const queryClient = new QueryClient();
 
 const App: FC = () => {
-    useEffect(() => {
-        themeChange(false);
-    }, []);
+    
 
     return (
         <QueryClientProvider client={queryClient}>

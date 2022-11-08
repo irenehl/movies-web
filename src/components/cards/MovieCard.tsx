@@ -1,12 +1,12 @@
 import { ConfigurationContext } from '@ctx/config';
-import React, { FC, useContext, useState } from 'react';
+import React, {
+    FC, useContext, useState, useMemo, useEffect,
+} from 'react';
 import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { AiFillEye } from 'react-icons/ai';
 import movieStorage from '@services/storage/movie.storage';
 import { toast } from 'react-hot-toast';
 import { MovieCardProps } from './props';
-import { useMemo } from 'react';
-import { useEffect } from 'react';
 
 const MovieCardSkeleton: FC = () => (
     <div className="flip-card h-80 w-52">
@@ -49,7 +49,7 @@ const MovieCard: FC<MovieCardProps> = ({ movie }) => {
     };
 
     return (
-        <div className="flip-card h-80 w-full md:w-52">
+        <div className="flip-card h-80 w-full my-10 md:w-52">
             <div className="absolute z-10 -top-2 -right-2 center-col-xy gap-y-2">
                 <button
                     onClick={handleFavoriteBtn}

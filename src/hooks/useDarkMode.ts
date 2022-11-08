@@ -5,21 +5,25 @@ const MODE = {
     DARK: 'dark',
 };
 
-const setDataTheme = (theme: string) => document.querySelector('html')?.setAttribute('data-theme', theme);
+const setDataTheme = (theme: string) => {
+    document.querySelector('html')?.setAttribute('data-theme', theme);
+    localStorage.setItem('data-theme', theme);
+};
 
 const useDarkMode = () => {
-    const [mode, setMode] = useState<string>('retro');
+    const [mode, setMode] = useState<string>(localStorage.getItem('data-theme') ?? MODE.LIGHT);
 
     const toggleMode = () => {
         setMode(mode === 'retro' ? MODE.DARK : MODE.LIGHT);
     };
 
     useEffect(() => {
-        setDataTheme(MODE.LIGHT);
+        const current = localStorage.getItem('data-theme') ?? MODE.LIGHT;
+        setDataTheme(current);
     }, []);
 
     useEffect(() => {
-        setDataTheme(mode);
+        setDataTheme(mode ?? 'a');
     }, [mode]);
 
     return { mode, toggleMode };
