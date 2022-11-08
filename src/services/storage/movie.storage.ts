@@ -14,8 +14,6 @@ export default {
 
         const isFav = _.indexOf(movies, id) !== -1;
 
-        if (id === 436270) console.log('IsFav', isFav);
-
         return isFav;
     },
     toggleFavorite(id: number) {

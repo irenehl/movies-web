@@ -5,14 +5,13 @@ import Favs from '@pages/favs';
 import { createBrowserRouter } from 'react-router-dom';
 import Auth from '@components/hoc/Auth';
 import Details from '@pages/details';
+import NotFound from '@pages/404';
 
 const history = createBrowserRouter([
     {
         path: '*',
         element: (
-            <div>
-                noai ni vergas
-            </div>
+            <NotFound />
         ),
     },
     {

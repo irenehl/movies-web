@@ -8,7 +8,7 @@ import { SearchMoviesProps } from './props';
 const SearchMovies: FC<SearchMoviesProps> = ({ query }) => {
     const id = useId();
     const [paging, setPaging] = useState(1);
-    const { data: popular } = useQuery(['search-movies', query], () => searchMovies({ page: paging }, query), {
+    const { data: popular } = useQuery(['search-movies', query, paging], () => searchMovies({ page: paging }, query), {
         retryOnMount: true,
         refetchOnMount: false,
         refetchOnWindowFocus: false,

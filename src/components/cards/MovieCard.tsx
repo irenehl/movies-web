@@ -6,6 +6,7 @@ import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
 import { AiFillEye } from 'react-icons/ai';
 import movieStorage from '@services/storage/movie.storage';
 import { toast } from 'react-hot-toast';
+import { Image } from '@components/common';
 import { MovieCardProps } from './props';
 
 const MovieCardSkeleton: FC = () => (
@@ -67,7 +68,9 @@ const MovieCard: FC<MovieCardProps> = ({ movie }) => {
             </div>
             <div className="flip-card-inner">
                 <div className="flip-card-front">
-                    <img src={imgSrc} alt={movie.title} className="object-cover w-full h-4/5" />
+                    <div className="w-full h-4/5">
+                        <Image src={imgSrc} alt={movie.title} />
+                    </div>
                     <div className="bg-secondary h-1/5 py-2 text-white">
                         <h1 className="font-medium">{movie.title}</h1>
                         <h2 className="badge badge-primary font-medium">{movie.release_date}</h2>
