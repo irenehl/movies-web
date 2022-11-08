@@ -13,7 +13,7 @@ export interface ImagesModel {
     still_sizes: string[];
 }
 
-export interface PopularMovieResponse {
+export interface PaginatedMovieResponse {
     page: number;
     results: MovieOverviewModel[];
     total_results: number;

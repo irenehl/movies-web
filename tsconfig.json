@@ -29,7 +29,8 @@
             "@router/*": ["router/*"],
             "@form/*": ["form/*"],
             "@assets/*": ["assets/*"],
-            "@ctx/*": ["ctx/*"]
+            "@ctx/*": ["ctx/*"],
+            "@utils/*": ["utils/*"]
         }
     },
     "include": [

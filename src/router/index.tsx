@@ -1,8 +1,10 @@
 import React from 'react';
 import Login from '@pages/login';
-import { createBrowserRouter } from 'react-router-dom';
 import Home from '@pages/home';
+import Favs from '@pages/favs';
+import { createBrowserRouter } from 'react-router-dom';
 import Auth from '@components/hoc/Auth';
+import Details from '@pages/details';
 
 const history = createBrowserRouter([
     {
@@ -10,10 +12,26 @@ const history = createBrowserRouter([
         element: <Login />,
     },
     {
-        path: '/home',
+        path: '/',
         element: (
             <Auth>
                 <Home />
+            </Auth>
+        ),
+    },
+    {
+        path: '/favs',
+        element: (
+            <Auth>
+                <Favs />
+            </Auth>
+        ),
+    },
+    {
+        path: '/details/:id',
+        element: (
+            <Auth>
+                <Details />
             </Auth>
         ),
     },

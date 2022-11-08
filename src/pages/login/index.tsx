@@ -23,7 +23,7 @@ const defaultOptions = {
 };
 
 const Login: FC = () => {
-    if (authStorage.getAuth() !== undefined) return <Navigate to="/home" replace />;
+    if (authStorage.getAuth() !== undefined) return <Navigate to="/" replace />;
 
     const navigate = useNavigate();
     const { mutateAsync } = useMutation((info: LoginModel) => login(info));

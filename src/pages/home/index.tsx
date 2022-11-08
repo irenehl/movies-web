@@ -1,4 +1,4 @@
-import { MovieCard } from '@components/cards';
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import Header from '@components/common/Header';
 import TextInput from '@components/inputs/TextInput';
 import Layout from '@components/layout';
@@ -6,23 +6,26 @@ import ConfigurationContextProvider from '@ctx/config';
 import { schema, defaultValues } from '@form/search.form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SearchModel } from '@models/search.model';
-import { getPopular } from '@services/movies.service';
-import { useQueries, useQuery } from '@tanstack/react-query';
-import React, { FC, useEffect, useState } from 'react';
+import React, {
+    FC, useEffect, useState,
+} from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { FiSearch } from 'react-icons/fi';
+import { FaTimes } from 'react-icons/fa';
+import { SearchMovies } from 'content';
 
 const Home: FC = () => {
-    const [paging, setPaging] = useState(5);
-    const { data: popular } = useQuery(['popular-movies', paging], () => getPopular({ page: paging }));
-    const { register, handleSubmit, formState } = useForm<SearchModel>({
+    const [query, setQuery] = useState('');
+    const {
+        register, handleSubmit, formState, reset,
+    } = useForm<SearchModel>({
         resolver: yupResolver(schema),
         defaultValues,
     });
 
     const onSubmit = async (data: SearchModel) => {
-
+        setQuery(data.query);
     };
 
     useEffect(() => {
@@ -30,18 +33,16 @@ const Home: FC = () => {
             icon: '👆',
             id: 'movie-text',
             duration: 6000,
-        }, []);
-    });
-
-    useEffect(() => console.log(popular), [popular]);
+        });
+    }, []);
 
     return (
         <Layout>
             <ConfigurationContextProvider>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form className="sticky mb-10" onSubmit={handleSubmit(onSubmit)}>
                     <Header title="Welcome to MoviesWeb" subtitle="Let's search a new movie! 🎥" />
                     <div className="flex flex-col gap-x-2 items-center
-                lg:flex-row"
+                    lg:flex-row"
                     >
                         <TextInput
                             label="Title"
@@ -60,12 +61,24 @@ const Home: FC = () => {
                             <FiSearch className="ml-2 w-4 h-4" />
                         </button>
                     </div>
+                    <div>
+                        { query !== '' ? (
+                            <div className="badge badge-info gap-2 center-row-y hover:scale-125">
+                                {query}
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setQuery('');
+                                        reset();
+                                    }}
+                                >
+                                    <FaTimes />
+                                </button>
+                            </div>
+                        ) : null}
+                    </div>
                 </form>
-                <section className="center-row-y flex-wrap gap-10">
-                    {popular && popular.data.results.length > 0 ? (
-                        popular.data.results.map((movie) => <MovieCard movie={movie} />)
-                    ) : null }
-                </section>
+                <SearchMovies query={query} />
             </ConfigurationContextProvider>
         </Layout>
     );
